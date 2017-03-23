@@ -7,7 +7,7 @@ public class MineSweeper {
   static ArrayList<Integer> mineMap;
 
   public static void main(String[] args) {
-    fillMap(initMap());
+    printMap(fillMap(initMap()));
   }
 
   public static ArrayList<Integer> initMap() {
@@ -48,10 +48,20 @@ public class MineSweeper {
         int selecteditem = item + 1 * i + MAPWIDTH * j;
         if (selecteditem >= 0 && selecteditem < MAPWIDTH * MAPHEIGHT) {
           int itemvalue = map.get(selecteditem);
-          map.set(selecteditem, itemvalue++);
+          map.set(selecteditem, itemvalue + 1);
         }
       }
     }
     return map;
+  }
+
+  public static void printMap(ArrayList<Integer> map) {
+    for (int i = 0; i < MAPHEIGHT; i++) {
+      for (int j = 0; j < MAPWIDTH; j++) {
+        System.out.print(map.get(i * MAPHEIGHT + j));
+        System.out.print(", ");
+      }
+      System.out.println("");
+    }
   }
 }
