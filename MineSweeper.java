@@ -1,13 +1,12 @@
 import java.util.*;
 
 public class MineSweeper {  
-  static final int MAPWIDTH = 10;
-  static final int MAPHEIGHT = 10;
-  static final int MINESUM = 10;
-  static ArrayList<Integer> mineMap;
+  public static final int MAPWIDTH = 10;
+  public static final int MAPHEIGHT = 10;
+  public static final int MINESUM = 20;
 
   public static void main(String[] args) {
-    printMap(fillMap(initMap()));
+    printMap(resetMineValue(fillMap(initMap())));
   }
 
   public static ArrayList<Integer> initMap() {
@@ -51,6 +50,14 @@ public class MineSweeper {
           map.set(selecteditem, itemvalue + 1);
         }
       }
+    }
+    return map;
+  }
+
+  public static ArrayList<Integer> resetMineValue(ArrayList<Integer> map) {
+    for (int i = 0; i < map.size(); i++) {      
+      if (map.get(i) > 9)
+        map.set(i, 9);
     }
     return map;
   }
