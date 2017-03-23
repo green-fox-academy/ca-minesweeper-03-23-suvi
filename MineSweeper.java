@@ -7,6 +7,7 @@ public class MineSweeper {
 
   public static void main(String[] args) {
     fillMap(initMap());
+    System.out.println(checkMine(initMap(), 0)); 
   }
 
   public static ArrayList<Integer> initMap() {
@@ -21,10 +22,22 @@ public class MineSweeper {
 
   public static ArrayList<Integer> fillMap(ArrayList<Integer> map) {    
     Random rand = new Random();
-    for (int i = 0; i < MINESUM; i++) {
+    for (int i = 0; i < MINESUM;) {
       int  n = rand.nextInt(MAPWIDTH * MAPHEIGHT);
-      map.set(n, 9);
-    }
+      if (checkMine(map, n)) {
+        map.set(n, 9);
+        i++;
+      }
+    }    
     return new ArrayList<>();
+  }
+
+  public static boolean checkMine(ArrayList<Integer> map, int item) {    
+    if (map.get(item) >= 9) {
+      return false;
+    } 
+    else {
+      return true;
+    }
   }
 }
